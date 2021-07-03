@@ -1,6 +1,10 @@
+<div align="center">
+
 # @tinyhttp/cookie-parser
 
-[![npm (scoped)][npm-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![npm][dl-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![GitHub Workflow Status][actions-badge]][github-actions] [![](https://img.shields.io/badge/donate-DEV-hotpink?style=for-the-badge)](https://stakes.social/0x14308514785B216904a41aB817282d25425Cce39)
+[![NPM][npm-badge]][npm-url] [![NPM][dl-badge]][npm-url] [![GitHub Workflow Status][actions-img]][github-actions] [![Coverage][cov-img]][cov-url]
+
+</div>
 
 > A rewrite of [cookie-parser](https://github.com/expressjs/cookie-parser) module.
 
@@ -103,8 +107,10 @@ new App()
 // curl http://127.0.0.1:8080 --cookie "Cho=Kim;Greet=Hello"
 ```
 
-[npm-badge]: https://img.shields.io/npm/v/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink&logo=npm&label=
+[npm-badge]: https://img.shields.io/npm/v/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink&label=&logo=npm
+[npm-url]: https://npmjs.com/package/@tinyhttp/cookie-parser
 [dl-badge]: https://img.shields.io/npm/dt/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink
+[actions-img]: https://img.shields.io/github/workflow/status/tinyhttp/cookie-parser/CI?style=for-the-badge&logo=github&label=&color=hotpink
 [github-actions]: https://github.com/tinyhttp/cookie-parser/actions
-[codacy-url]: https://www.codacy.com/manual/tinyhttp/cookie-parser
-[actions-badge]: https://img.shields.io/github/workflow/status/tinyhttp/cookie-parser/CI?style=for-the-badge&logo=github&label=&color=hotpink
+[cov-img]: https://img.shields.io/coveralls/github/tinyhttp/cookie-parser?style=for-the-badge&color=hotpink&a
+[cov-url]: https://coveralls.io/github/tinyhttp/cookie-parser
