@@ -58,9 +58,6 @@ jobs:
       - name: build packages
         run: pnpm build
 
-      - name: run tests
-        run: pnpm test
-
       - run: pnpm install
       - run: pnpm test:coverage
       - run: pnpm test:report
