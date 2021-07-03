@@ -1,7 +1,6 @@
 import { signedCookies } from '../src/index'
 import { describe } from './helpers'
-import { expect } from 'earljs'
-import { suite } from 'uvu'
+import expect from 'expect'
 
 describe('signedCookies(obj, secret)', function (it) {
   it('should ignore non-signed strings', function () {
@@ -24,7 +23,7 @@ describe('signedCookies(obj, secret)', function (it) {
   it('should remove signed strings from original object', function () {
     const obj = {
       foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
-    } as any
+    }
 
     expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: 'foobar' })
     expect(obj).toEqual({})
@@ -33,7 +32,7 @@ describe('signedCookies(obj, secret)', function (it) {
   it('should remove tampered strings from original object', function () {
     const obj = {
       foo: 's:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
-    } as any
+    }
 
     expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: false })
     expect(obj).toEqual({})
@@ -43,7 +42,7 @@ describe('signedCookies(obj, secret)', function (it) {
     const obj = {
       fizz: 'buzz',
       foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
-    } as { fizz: string }
+    }
 
     expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: 'foobar' })
     expect(obj).toEqual({ fizz: 'buzz' })
