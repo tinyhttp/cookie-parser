@@ -3,7 +3,7 @@ import { describe } from './helpers'
 import { expect } from 'earljs'
 import { suite } from 'uvu'
 
-let it = suite('signedCookie(str, secret)')
+const it = suite('signedCookie(str, secret)')
 
 it('should return undefined for non-string arguments', function () {
   expect(signedCookie(undefined, 'keyboard cat')).toEqual(undefined)
