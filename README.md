@@ -1,6 +1,6 @@
 # @tinyhttp/cookie-parser
 
-[![npm (scoped)][npm-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![npm][dl-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/tinyhttp/tinyhttp/CI?style=for-the-badge&logo=github&label=&color=hotpink)][github-actions] [![](https://img.shields.io/badge/donate-DEV-hotpink?style=for-the-badge)](https://stakes.social/0x14308514785B216904a41aB817282d25425Cce39)
+[![npm (scoped)][npm-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![npm][dl-badge]](https://npmjs.com/package/@tinyhttp/cookie-parser) [![GitHub Workflow Status][actions-badge]][github-actions] [![](https://img.shields.io/badge/donate-DEV-hotpink?style=for-the-badge)](https://stakes.social/0x14308514785B216904a41aB817282d25425Cce39)
 
 > A rewrite of [cookie-parser](https://github.com/expressjs/cookie-parser) module.
 
@@ -107,3 +107,4 @@ new App()
 [dl-badge]: https://img.shields.io/npm/dt/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink
 [github-actions]: https://github.com/tinyhttp/cookie-parser/actions
 [codacy-url]: https://www.codacy.com/manual/tinyhttp/cookie-parser
+[actions-badge]: https://img.shields.io/github/workflow/status/tinyhttp/cookie-parser/CI?style=for-the-badge&logo=github&label=&color=hotpink
