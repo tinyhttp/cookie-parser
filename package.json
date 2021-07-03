@@ -42,7 +42,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c ../../build/defaultConfig.js"
+    "build": "rollup -c",
+    "test": "node --experimental-loader esbuild-node-loader node_modules/uvu/bin.js tests",
+    "test:coverage": "c8 --include=src pnpm test",
+    "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
+    "lint": "eslint . --ext=ts",
+    "format": "prettier --check \"./**/*.ts\""
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
