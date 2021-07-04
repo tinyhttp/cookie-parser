@@ -2,7 +2,7 @@
   "name": "@tinyhttp/cookie-parser",
   "version": "1.3.12",
   "type": "module",
-  "description": "tinyhttp cookie parsing middleware",
+  "description": "Cookie parsing middleware for Node.js",
   "homepage": "https://github.com/tinyhttp/cookie-parser#readme",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "test:coverage": "c8 --include=src pnpm test",
     "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
     "lint": "eslint . --ext=ts",
-    "format": "prettier --check \"./**/*.ts\""
+    "format": "prettier --check \"./**/*.{ts,md}\""
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.1",

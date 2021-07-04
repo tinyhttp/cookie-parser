@@ -1,6 +1,12 @@
-import { Request, Response, NextFunction } from '@tinyhttp/app'
+import { IncomingMessage, ServerResponse } from 'http'
 import * as cookie from '@tinyhttp/cookie'
 import * as signature from '@tinyhttp/cookie-signature'
+
+export interface CookieParserRequest extends IncomingMessage {
+  cookies: any
+  secret: string | string[]
+  signedCookies: any
+}
 
 /**
  * Parse JSON cookie string.
@@ -79,7 +85,7 @@ export function signedCookies(obj: any, secret: string | string[]) {
 export const cookieParser = (secret?: string | string[]) => {
   const secrets = !secret || Array.isArray(secret) ? secret || [] : [secret]
 
-  return function cookieParser(req: Request, _res: Response, next?: NextFunction) {
+  return function cookieParser(req: CookieParserRequest, _res: Response, next?: () => void) {
     if (req.cookies) {
       next?.()
       return
