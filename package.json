@@ -46,7 +46,8 @@
     "test:coverage": "c8 --include=src pnpm test",
     "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
     "lint": "eslint . --ext=ts",
-    "format": "prettier --check \"./**/*.{ts,md}\""
+    "format": "prettier --check \"./**/*.{ts,md}\"",
+    "prepare": "pnpm build && pnpm lint && pnpm test"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
