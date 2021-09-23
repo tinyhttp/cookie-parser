@@ -3,9 +3,9 @@ import * as cookie from '@tinyhttp/cookie'
 import * as signature from '@tinyhttp/cookie-signature'
 
 export interface CookieParserRequest extends IncomingMessage {
-  cookies: any
-  secret: string | string[]
-  signedCookies: any
+  cookies?: any
+  secret?: string | string[]
+  signedCookies?: any
 }
 
 /**
