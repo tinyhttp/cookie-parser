@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse as Response } from 'http'
 import * as cookie from '@tinyhttp/cookie'
 import * as signature from '@tinyhttp/cookie-signature'
 
@@ -41,7 +41,7 @@ function JSONCookies(obj: any) {
 /**
  * Parse a signed cookie string, return the decoded value.
  */
-export function signedCookie(str: string | unknown, secret: string | string[]) {
+export function signedCookie(str: string | unknown, secret: string | string[]): string | boolean | undefined {
   if (typeof str !== 'string') return undefined
 
   if (str.substr(0, 2) !== 's:') return str
@@ -61,9 +61,9 @@ export function signedCookie(str: string | unknown, secret: string | string[]) {
  * Parse signed cookies, returning an object containing the decoded key/value
  * pairs, while removing the signed key from obj.
  */
-export function signedCookies(obj: any, secret: string | string[]) {
+export function signedCookies(obj: any, secret: string | string[]): Record<string, string | boolean | undefined> {
   const cookies = Object.keys(obj)
-  const ret = Object.create(null)
+  const ret: Record<string, string | boolean | undefined> = Object.create(null)
 
   for (const key of cookies) {
     const val = obj[key]
@@ -85,7 +85,7 @@ export function signedCookies(obj: any, secret: string | string[]) {
 export const cookieParser = (secret?: string | string[]) => {
   const secrets = !secret || Array.isArray(secret) ? secret || [] : [secret]
 
-  return function cookieParser(req: CookieParserRequest, _res: Response, next?: () => void) {
+  return function cookieParser(req: CookieParserRequest, _res: Response, next?: () => void): void {
     if (req.cookies) {
       next?.()
       return

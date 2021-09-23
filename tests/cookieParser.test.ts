@@ -1,6 +1,5 @@
-import { suite } from 'uvu'
 import http from 'http'
-import { cookieParser, JSONCookie, signedCookie, signedCookies } from '../src/index'
+import { cookieParser } from '../src/index'
 import * as signature from '@tinyhttp/cookie-signature'
 import type { Request, Response } from '@tinyhttp/app'
 import { makeFetch } from 'supertest-fetch'
@@ -9,13 +8,7 @@ import { describe } from './helpers'
 function createServer(secret?: any) {
   const _parser = cookieParser(secret)
   return http.createServer((req, res) => {
-    _parser(req as Request, res as Response, (err) => {
-      if (err) {
-        res.statusCode = 500
-        res.end(err.message)
-        return
-      }
-
+    _parser(req as Request, res as Response, () => {
       const cookies = req.url === '/signed' ? (req as Request).signedCookies : (req as Request).cookies
       res.end(JSON.stringify(cookies))
     })
@@ -64,13 +57,7 @@ describe('when req.cookies exists', function (it) {
 
       r.cookies = { fizz: 'buzz' }
 
-      cookieParser()(r, res as Response, (err) => {
-        if (err) {
-          res.statusCode = 500
-          res.end(err.message)
-          return
-        }
-
+      cookieParser()(r, res as Response, () => {
         res.end(JSON.stringify(r.cookies))
       })
     })
