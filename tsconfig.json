@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "dist",
-    "module": "ESNext",
-    "target": "ES2019",
-    "preserveSymlinks": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "Node",
-    "strict": true
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "rootDir": "src",
+    "isolatedModules": true,
+    "outDir": "dist",
+    "preserveSymlinks": true,
+    "skipLibCheck": true,
+    "types": ["node"]
   },
-  "include": ["./src/*.ts"]
+  "include": ["src/**/*"]
 }
