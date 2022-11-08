@@ -25,8 +25,8 @@
   "author": "v1rtl",
   "license": "MIT",
   "dependencies": {
-    "@tinyhttp/cookie": "2.0.3",
-    "@tinyhttp/cookie-signature": "2.0.2"
+    "@tinyhttp/cookie": "^2.0.3",
+    "@tinyhttp/cookie-signature": "^2.0.3"
   },
   "files": [
     "dist"
