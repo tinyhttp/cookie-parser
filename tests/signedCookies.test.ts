@@ -1,76 +1,78 @@
 import { signedCookies } from '../src/index'
 import { describe } from './helpers'
-import expect from 'expect'
+import * as assert from 'node:assert'
 
-describe('signedCookies(obj, secret)', function (it) {
-  it('should ignore non-signed strings', function () {
-    expect(signedCookies({}, 'keyboard cat')).toEqual({})
-    expect(signedCookies({ foo: 'bar' }, 'keyboard cat')).toEqual({})
+describe('signedCookies(obj, secret)', (it) => {
+  it('should ignore non-signed strings', () => {
+    assert.deepEqual(signedCookies({}, 'keyboard cat'), {})
+    assert.deepEqual(signedCookies({ foo: 'bar' }, 'keyboard cat'), {})
   })
 
-  it('should include tampered strings as false', function () {
-    expect(signedCookies({ foo: 's:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE' }, 'keyboard cat')).toEqual({
+  it('should include tampered strings as false', () => {
+    assert.deepEqual(signedCookies({ foo: 's:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE' }, 'keyboard cat'), {
       foo: false
     })
   })
 
-  it('should include unsigned strings', function () {
-    expect(signedCookies({ foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE' }, 'keyboard cat')).toEqual({
+  it('should include unsigned strings', () => {
+    assert.deepEqual(signedCookies({ foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE' }, 'keyboard cat'), {
       foo: 'foobar'
     })
   })
 
-  it('should remove signed strings from original object', function () {
+  it('should remove signed strings from original object', () => {
     const obj = {
       foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
     }
 
-    expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: 'foobar' })
-    expect(obj).toEqual({})
+    assert.deepEqual(signedCookies(obj, 'keyboard cat'), { foo: 'foobar' })
+    assert.deepEqual(obj, {})
   })
 
-  it('should remove tampered strings from original object', function () {
+  it('should remove tampered strings from original object', () => {
     const obj = {
       foo: 's:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
     }
 
-    expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: false })
-    expect(obj).toEqual({})
+    assert.deepEqual(signedCookies(obj, 'keyboard cat'), { foo: false })
+    assert.deepStrictEqual(obj, {})
   })
 
-  it('should leave unsigned string in original object', function () {
+  it('should leave unsigned string in original object', () => {
     const obj = {
       fizz: 'buzz',
       foo: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE'
     }
 
-    expect(signedCookies(obj, 'keyboard cat')).toEqual({ foo: 'foobar' })
-    expect(obj).toEqual({ fizz: 'buzz' })
+    assert.deepEqual(signedCookies(obj, 'keyboard cat'), { foo: 'foobar' })
+    assert.deepEqual(obj, { fizz: 'buzz' })
   })
 })
 
-describe('signedCookies(obj, secret) > when secret is an array', function (it) {
-  it('should include unsigned strings for matching secrets', function () {
+describe('signedCookies(obj, secret) > when secret is an array', (it) => {
+  it('should include unsigned strings for matching secrets', () => {
     const obj = {
       buzz: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE',
       fizz: 's:foobar.JTCAgiMWsnuZpN3mrYnEUjXlGxmDi4POCBnWbRxse88'
     }
 
-    expect(signedCookies(obj, ['keyboard cat'])).toEqual({
+    assert.deepEqual(signedCookies(obj, ['keyboard cat']), {
       buzz: 'foobar',
       fizz: false
     })
   })
 
-  it('should include unsigned strings for all secrets', function () {
+  it('should include unsigned strings for all secrets', () => {
     const obj = {
       buzz: 's:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE',
       fizz: 's:foobar.JTCAgiMWsnuZpN3mrYnEUjXlGxmDi4POCBnWbRxse88'
     }
 
-    expect(signedCookies(obj, ['keyboard cat', 'nyan cat'])).toEqual({
-      buzz: 'foobar',
-      fizz: 'foobar'
-    })
+    const expected = Object.create(null)
+
+    expected.buzz = 'foobar'
+    expected.fizz = 'foobar'
+
+    assert.deepEqual(signedCookies(obj, ['keyboard cat', 'nyan cat']), expected)
   })
 })

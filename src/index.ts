@@ -12,7 +12,7 @@ export interface CookieParserRequest extends IncomingMessage {
  * Parse JSON cookie string.
  */
 export function JSONCookie(str?: string | unknown) {
-  if (typeof str !== 'string' || str.substr(0, 2) !== 'j:') {
+  if (typeof str !== 'string' || str.substring(0, 2) !== 'j:') {
     return undefined
   }
 
@@ -44,7 +44,7 @@ function JSONCookies(obj: any) {
 export function signedCookie(str: string | unknown, secret: string | string[]): string | boolean | undefined {
   if (typeof str !== 'string') return undefined
 
-  if (str.substr(0, 2) !== 's:') return str
+  if (str.substring(0, 2) !== 's:') return str
 
   const secrets = !secret || Array.isArray(secret) ? secret || [] : [secret]
 
