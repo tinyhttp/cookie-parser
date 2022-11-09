@@ -22,6 +22,10 @@ it('should return false for tampered signed string', function () {
   assert.equal(signedCookie('s:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE', 'keyboard cat'), false)
 })
 
+it('should return false when invalid secret is passed', function () {
+  assert.equal(signedCookie('s:foobaz.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE', ''), false)
+})
+
 it('should return unsigned value for signed string', function () {
   assert.equal(signedCookie('s:foobar.N5r0C3M8W+IPpzyAJaIddMWbTGfDSO+bfKlZErJ+MeE', 'keyboard cat'), 'foobar')
 })
