@@ -72,7 +72,14 @@ describe('when req.cookies exists', function (it) {
 
 describe('when a secret is given', function (it) {
   const val = signature.sign('foobarbaz', 'keyboard cat')
-  // TODO: "bar" fails...
+
+  it('should populate req.signedCookies with false for incorrect secret', async () => {
+    await makeFetch(createServer('keyboard new cat'))('/signed', {
+      headers: {
+        Cookie: 'foo=s:' + val
+      }
+    }).expect(200, '{"foo":false}')
+  })
 
   it('should populate req.signedCookies', async () => {
     await makeFetch(createServer('keyboard cat'))('/signed', {
@@ -117,21 +124,3 @@ describe('when multiple secrets are given', function (it) {
     }).expect(200, '{"buzz":"foobar","fizz":"foobar"}')
   })
 })
-
-/*  describe('when no secret is given', function () {
-  let server: http.Server
-
-  beforeEach(() => (server = createServer()))
-
-  it('should populate req.cookies', async () => {
-    await makeFetch(server).get('/').set('Cookie', 'foo=bar; bar=baz').expect(200, '{"foo":"bar","bar":"baz"}', done)
-  })
-
-  it('should not populate req.signedCookies', async () => {
-    var val = signature.sign('foobarbaz', 'keyboard cat')
-    await makeFetch(server)
-      .get('/signed')
-      .set('Cookie', 'foo=s:' + val)
-      .expect(200, '{}', done)
-  })
-}) */
