@@ -110,7 +110,7 @@ new App()
 [npm-badge]: https://img.shields.io/npm/v/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink&label=&logo=npm
 [npm-url]: https://npmjs.com/package/@tinyhttp/cookie-parser
 [dl-badge]: https://img.shields.io/npm/dt/@tinyhttp/cookie-parser?style=for-the-badge&color=hotpink
-[actions-img]: https://img.shields.io/github/actions/workflow/status/tinyhttp/cookie-parser/ci.yml?style=for-the-badge&logo=github&label=&color=hotpink
+[actions-img]: https://img.shields.io/github/actions/workflow/status/tinyhttp/cookie-parser/main.yml?style=for-the-badge&logo=github&label=&color=hotpink
 [github-actions]: https://github.com/tinyhttp/cookie-parser/actions
 [cov-img]: https://img.shields.io/coveralls/github/tinyhttp/cookie-parser?style=for-the-badge&color=hotpink&a
 [cov-url]: https://coveralls.io/github/tinyhttp/cookie-parser
